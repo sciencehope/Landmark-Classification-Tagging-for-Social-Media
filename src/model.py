@@ -4,15 +4,12 @@ import torch.nn.functional as F
 
 
 # define the CNN architecture
+import torch
+import torch.nn as nn
+
 class MyModel(nn.Module):
     def __init__(self, num_classes: int = 1000, dropout: float = 0.4) -> None:
         super(MyModel, self).__init__()
-
-        # YOUR CODE HERE
-        # Define a CNN architecture. Remember to use the variable num_classes
-        # to size appropriately the output of your classifier, and if you use
-        # the Dropout layer, use the variable "dropout" to indicate how much
-        # to use (like nn.Dropout(p=dropout))
 
         # Initial convolutional layer
         self.conv1 = nn.Conv2d(in_channels=3, out_channels=64, kernel_size=7, stride=2, padding=3)
@@ -61,10 +58,6 @@ class MyModel(nn.Module):
         return nn.Sequential(*layers, nn.ReLU(), shortcut)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        # YOUR CODE HERE: process the input tensor through the
-        # feature extractor, the pooling and the final linear
-        # layers (if appropriate for the architecture chosen)
-        
         # Initial convolutional layer
         x = self.conv1(x)
         x = self.bn1(x)
@@ -85,6 +78,7 @@ class MyModel(nn.Module):
         x = self.fc2(x)
 
         return x
+
 
 
 ######################################################################################
