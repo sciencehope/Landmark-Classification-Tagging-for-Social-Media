@@ -56,18 +56,15 @@ def get_data_loaders(
             # YOUR CODE HERE
             transforms.Resize(image_size, antialias=True),
             transforms.CenterCrop(crop_size),
-#             transforms.RandomHorizontalFlip(p=0.5),
-#             transforms.RandomApply([transforms.RandomVerticalFlip(p=0.5)], p=0.5),
-#             transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),
-#             transforms.RandomRotation(degrees=(-15,15)),
-#             transforms.GaussianBlur(5),
-#             transforms.RandomGrayscale(p=0.1),
-#             transforms.RandomAutocontrast(p=0.5),
-            transforms.RandAugment(
-                num_ops=6,
-                magnitude=9,
-                interpolation=transforms.InterpolationMode.BILINEAR,
-            ),
+            transforms.RandomHorizontalFlip(p=0.5),
+            # transforms.RandomVerticalFlip(p=0.5),
+            transforms.RandomRotation(degrees=(-10,10)),
+
+            # transforms.RandomResizedCrop(crop_size, scale=(0.8, 1.0), ratio=(1.0, 1.0)),
+            # transforms.RandomApply([transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1)], p=0.8),
+            transforms.RandomGrayscale(p=0.2),
+            transforms.GaussianBlur(5),
+            transforms.RandomAutocontrast(p=0.5),
             transforms.ToTensor(),
             transforms.Normalize(mean, std)                        
         ]),
